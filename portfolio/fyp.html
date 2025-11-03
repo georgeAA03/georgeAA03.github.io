@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>FYP — AI-enhanced ELK Threat Detection | George Abou Assaleh</title>
+
+<!-- Editorial Theme -->
+<link rel="stylesheet" href="../Editorial/assets/css/main.css" />
+
+<!-- Font + Animations + Icons (match Ethical Hacking 2) -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<script src="https://unpkg.com/scrollreveal"></script>
+
+<style>
+body {
+    font-family: 'Poppins', sans-serif;
+    color: #222;
+    background: #fff;
+}
+
+header {
+    text-align: center;
+    padding: 2rem 1rem;
+}
+
+header h1 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    color: #222; /* Neutral title to match Ethical Hacking 2 */
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 1.25rem;
+    margin: 0.5rem 0 0;
+}
+
+nav a {
+    text-decoration: none;
+    color: #0078d7;
+    font-weight: 600;
+    transition: color 0.25s ease;
+}
+
+nav a:hover {
+    color: #005fa3;
+}
+
+main {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 1.75rem;
+    line-height: 1.6;
+}
+
+section {
+    background: #fbfbfb;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.7s ease;
+}
+
+section.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+section h2, section h3 {
+    margin-top: 0;
+    margin-bottom: 0.6rem;
+    font-weight: 600;
+}
+
+/* Highlights styled exactly like Ethical Hacking 2 */
+.highlights {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1rem;
+    list-style: none;
+    padding-left: 0;
+    margin-top: 1rem;
+}
+
+.highlights li {
+    background: #eef6ff;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.highlights li i {
+    color: #0078d7;
+    font-size: 1rem;
+}
+
+/* Scenario and Skills blocks */
+.scenario { background: #fff6f0; }
+.skills { background: #eef6ff; }
+
+iframe.report {
+    width: 100%;
+    height: 820px;
+    border: 1px solid #e6e6e6;
+    border-radius: 8px;
+    margin-top: 0.5rem;
+}
+
+.download {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.download .button {
+    background: transparent;
+    color: #f56a6a;
+    box-shadow: inset 0 0 0 2px #f56a6a;
+    display: inline-block;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.download .button:hover {
+    background-color: rgba(245, 106, 106, 0.08);
+    transform: translateY(-2px);
+}
+
+footer {
+    text-align: center;
+    padding: 1.25rem;
+    margin-top: 2rem;
+    background: #fafafa;
+}
+
+@media (min-width: 900px) {
+    .highlights { gap: 1.25rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+    <h1>FYP — AI-enhanced ELK Threat Detection (Ongoing)</h1>
+    <nav>
+        <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="dfir.html">DFIR</a></li>
+            <li><a href="ethical1.html">Ethical 1</a></li>
+            <li><a href="ethical2.html">Ethical 2</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- Main -->
+<main>
+    <!-- Overview -->
+    <section class="intro">
+        <h2>Project Overview</h2>
+        <p>
+            This Final Year Project proposes an <strong>AI-enhanced ELK architecture</strong> integrating real-time threat detection, adaptive learning, and automated incident response in a scalable and transparent framework.
+            Logs from Windows systems (<em>Sysmon, Winlogbeat</em>), network captures (<em>Packetbeat, Arkime</em>), and honeypots (<em>T-Pot</em>) are collected and enriched via <em>Logstash</em>, then indexed in <em>Elasticsearch</em>.
+            Unsupervised ML algorithms (Isolation Forest, K-Means) detect anomalies, while supervised models (Random Forest, CNNs) classify security events. 
+            Adaptive learning retrains models using analyst feedback to adapt to emerging threats. 
+            <em>Kibana</em> dashboards visualize alerts and trends in real time, and the system can automatically trigger responses such as alerts, IP blocking, or MISP incident reporting.
+            This hybrid approach enhances <strong>visibility</strong> via ELK dashboards and <strong>intelligence</strong> via AI-driven analysis.
+        </p>
+
+        <ul class="highlights">
+            <li><i class="fas fa-database"></i> ELK Stack (Elasticsearch, Logstash, Kibana)</li>
+            <li><i class="fas fa-laptop-code"></i> Windows Log Collection (Sysmon + Winlogbeat)</li>
+            <li><i class="fas fa-brain"></i> AI/ML Threat Detection</li>
+            <li><i class="fas fa-network-wired"></i> Network Capture & Analysis (Arkime, Packetbeat)</li>
+            <li><i class="fas fa-shield-alt"></i> Threat Intelligence (VirusTotal API)</li>
+            <li><i class="fas fa-bug"></i> Honeypot Telemetry (T-Pot)</li>
+            <li><i class="fas fa-chart-line"></i> Real-Time Dashboards (Kibana)</li>
+        </ul>
+    </section>
+
+    <!-- Scenario -->
+    <section class="scenario">
+        <h3>Realistic Enterprise Scenario</h3>
+        <p>
+            The project simulates a real-world <strong>Security Operations Center (SOC)</strong> environment,
+            aggregating host and network logs, honeypot data, and threat intelligence into a centralized SIEM.
+            Integration of <em>Arkime</em> and <em>VirusTotal</em> supports deep network analysis and automated enrichment.
+            Machine learning models such as <strong>Isolation Forest</strong> and <strong>Autoencoders</strong>
+            detect suspicious behavior that traditional detection mechanisms might miss.
+        </p>
+    </section>
+
+    <!-- Skills -->
+    <section class="skills">
+        <h3>Techniques and Skills to be Demonstrated</h3>
+        <ul>
+            <li><i class="fas fa-database"></i> Centralized log collection (Sysmon, Winlogbeat)</li>
+            <li><i class="fas fa-file-code"></i> Log parsing and enrichment (Logstash)</li>
+            <li><i class="fas fa-search"></i> Data indexing and querying (Elasticsearch)</li>
+            <li><i class="fas fa-network-wired"></i> Network capture and analysis (Arkime, Packetbeat)</li>
+            <li><i class="fas fa-shield-alt"></i> Threat intelligence lookups (VirusTotal API)</li>
+            <li><i class="fas fa-bug"></i> Honeypot telemetry and attack profiling (T-Pot)</li>
+            <li><i class="fas fa-brain"></i> Machine learning for anomaly scoring (Isolation Forest / Autoencoder)</li>
+            <li><i class="fas fa-chart-line"></i> Dashboard creation and visualization (Kibana)</li>
+            <li><i class="fas fa-file-lines"></i> Clear documentation with remediation recommendations</li>
+        </ul>
+    </section>
+
+  
+</main>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2025 George Abou Assaleh</p>
+</footer>
+
+<script src="../Editorial/assets/js/main.js"></script>
+<script>
+    // Scroll reveal animations — Fix 1: never remove 'show'
+    const sections = document.querySelectorAll("section");
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("show");
+            }
+        });
+    }, { threshold: 0.15 });
+    sections.forEach(section => observer.observe(section));
+</script>
+
+
+</body>
+</html>

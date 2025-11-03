@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Ethical Hacking 1 | George Abou Assaleh</title>
+
+    <!-- Editorial Theme -->
+    <link rel="stylesheet" href="../Editorial/assets/css/main.css">
+
+    <!-- Font and Icons (Font Awesome) + Custom Style (aligned with FYP) -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body { font-family: 'Poppins', sans-serif; color: #222; background: #fff; }
+        header { text-align: center; padding: 2.0rem 1rem; }
+        header h1 { margin-bottom: 0.25rem; font-size: 1.8rem; color: #222; } /* preserved no-blue title */
+        nav ul { list-style: none; padding: 0; display:flex; gap:1.25rem; justify-content:center; margin:0.5rem 0 0; }
+        nav a { text-decoration: none; color: #0078d7; font-weight:600; }
+
+        main { max-width: 980px; margin: 0 auto; padding: 2rem 1.25rem; line-height: 1.7; }
+
+        /* Card style sections + reveal animation */
+        section {
+            background: #fbfbfb;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.7s ease;
+        }
+        section.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        section h2, section h3 { margin-top: 0; margin-bottom: .6rem; font-weight:600; }
+
+        .highlights {
+            display:flex;
+            flex-wrap:wrap;
+            gap:0.75rem 1rem;
+            list-style:none;
+            padding-left:0;
+            margin-top:1rem;
+        }
+        .highlights li {
+            background: #eef6ff;
+            padding: 0.6rem 1rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            display:flex;
+            align-items:center;
+            gap:0.6rem;
+        }
+        .highlights li i { color: #0078d7; width:18px; text-align:center; }
+
+        .scenario { background: #fff6f0; }
+        .tools { background: #eef6ff; padding:1rem; border-radius:10px; margin-top:1.25rem; }
+
+        .report-section { margin-top:1.75rem; }
+        iframe.report { width:100%; height:880px; border:1px solid #e6e6e6; border-radius:8px; }
+
+        .download { text-align:center; margin-top:1rem; }
+        .download .button {
+            background: transparent;
+            color: #f56a6a;
+            box-shadow: inset 0 0 0 2px #f56a6a;
+            display: inline-block;
+            padding: 0.6rem 1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .download .button:hover { background-color: rgba(245,106,106,0.08); transform: translateY(-2px); }
+
+        footer { text-align:center; padding:1.25rem; margin-top:2.5rem; background:#fafafa; }
+
+        @media (min-width:900px){
+            .highlights { gap:1.5rem; }
+            .highlights li { margin-right: .5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>Ethical Hacking 1</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="dfir.html">DFIR</a></li>
+                <li><a href="ethical2.html">Ethical 2</a></li>
+                <li><a href="fyp.html">FYP</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Summary -->
+        <section class="summary" aria-labelledby="overview">
+            <h2 id="overview">Project overview</h2>
+            <p>
+                Ethical Hacking 1 is an end-to-end penetration test focused on a vulnerable Linux target.
+                The engagement covers reconnaissance, service and web enumeration, exploitation attempts,
+                and privilege escalation analysis. The deliverable is a detailed LaTeX walkthrough containing commands, outputs, and remediation recommendations.
+            </p>
+
+            <!-- Detailed highlights (tools / techniques / outcomes / deliverable) -->
+            <ul class="highlights" aria-hidden="false">
+                <li><i class="fa-solid fa-toolbox"></i> <strong>Tools:</strong> Nmap, Nexpose, Metasploit, Enum4Linux, LinPEAS, Burp Suite</li>
+                <li><i class="fa-solid fa-magnifying-glass"></i> <strong>Techniques:</strong> Recon, web-app enumeration (ports 8000/8080), SUID analysis, PATH abuse, local privilege escalation</li>
+                <li><i class="fa-solid fa-flag-checkered"></i> <strong>Outcomes:</strong> User & root flags obtained, credential extraction, documented exploitation paths and PoCs</li>
+                <li><i class="fa-solid fa-file-lines"></i> <strong>Deliverable:</strong> Full LaTeX walkthrough with step-by-step commands, screenshots, and prioritized remediation</li>
+            </ul>
+        </section>
+
+        <!-- Realistic Enterprise Scenario -->
+        <section class="scenario" aria-labelledby="scenario">
+            <h3 id="scenario">Realistic Enterprise Scenario</h3>
+            <p>
+                This lab was structured to simulate a real-world security audit. Each attack vector (on ports <strong>22</strong>, <strong>8000</strong>, and <strong>8080</strong>)
+                represented distinct layers of system exposure, illustrating how vulnerabilities can chain together to achieve privilege escalation and full system compromise.
+                The scenario emphasizes systematic enumeration and the importance of prioritized remediation.
+            </p>
+        </section>
+
+        <!-- Technical highlights box -->
+        <section class="tools" aria-labelledby="tools">
+            <h3 id="tools">Techniques and Skills Demonstrated</h3>
+            <ul>
+                <li><i class="fa-solid fa-network-wired"></i> Network reconnaissance and service scanning to identify exposed services and versions</li>
+                <li><i class="fa-solid fa-image"></i> Web application and metadata discovery to identify sensitive files and attack vectors</li>
+                <li><i class="fa-solid fa-user-shield"></i> SUID and filesystem analysis to identify local escalation opportunities</li>
+                <li><i class="fa-solid fa-check-to-slot"></i> Exploit validation and post-exploitation enumeration to capture proof-of-concept artifacts</li>
+            </ul>
+        </section>
+
+        <!-- Embedded report -->
+        <section class="report-section" aria-labelledby="report">
+            <h3 id="report" style="margin-top:1.25rem;">Full technical walkthrough</h3>
+            <p>
+                The embedded PDF below contains the full LaTeX walkthrough: step-by-step reconnaissance, detailed exploitation notes (including Tomcat/AJP and SUID-based escalation),
+                post-exploitation steps, and a prioritized remediation plan to reduce the attack surface.
+            </p>
+
+            <iframe class="report" src="ethical1_report.pdf" title="Ethical Hacking 1 — full report (PDF)"></iframe>
+
+            <div class="download">
+                <a class="button" href="ethical1_report.pdf" download>Download Full Report (PDF)</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 George Abou Assaleh</p>
+    </footer>
+
+<script src="../Editorial/assets/js/main.js"></script>
+<script>
+    // Scroll reveal animations — Fix 1: never remove 'show'
+    const sections = document.querySelectorAll("section");
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("show");
+            }
+        });
+    }, { threshold: 0.15 });
+    sections.forEach(section => observer.observe(section));
+</script>
+
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>DFIR Project | George Abou Assaleh</title>
+
+<!-- Editorial Theme -->
+<link rel="stylesheet" href="../Editorial/assets/css/main.css">
+
+<!-- Font, Icons, and Animations -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<script src="https://unpkg.com/scrollreveal"></script>
+
+<style>
+body {
+    font-family: 'Poppins', sans-serif;
+    color: #222;
+    background: #fff;
+}
+
+header {
+    text-align: center;
+    padding: 2rem 1rem;
+}
+
+header h1 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    color: #222;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 1.25rem;
+    margin: 0.5rem 0 0;
+}
+
+nav a {
+    text-decoration: none;
+    color: #0078d7;
+    font-weight: 600;
+    transition: color 0.25s ease;
+}
+
+nav a:hover {
+    color: #005fa3;
+}
+
+main {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 2rem 1.25rem;
+    line-height: 1.7;
+}
+
+section {
+    background: #fbfbfb;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.7s ease;
+}
+
+section.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+section h2, section h3 {
+    margin-top: 0;
+    margin-bottom: 0.6rem;
+    font-weight: 600;
+}
+
+.highlights {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1rem;
+    list-style: none;
+    padding-left: 0;
+    margin-top: 1rem;
+}
+
+.highlights li {
+    background: #eef6ff;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.highlights li i {
+    color: #0078d7;
+    font-size: 1rem;
+}
+
+.tools { 
+    background:#eef6ff; 
+    padding:1rem; 
+    border-radius:12px; 
+    margin-top:1.25rem; 
+}
+
+/* Match FYP/Ethical Hacking scenario color */
+.scenario {
+    background: #fff6f0;
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+}
+
+footer {
+    text-align: center;
+    padding: 1.25rem;
+    margin-top: 2rem;
+    background: #fafafa;
+}
+
+@media (min-width: 900px) {
+    .highlights { gap: 1.25rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+    <h1>DFIR Project (Ongoing)</h1>
+    <nav>
+        <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="ethical1.html">Ethical 1</a></li>
+            <li><a href="ethical2.html">Ethical 2</a></li>
+            <li><a href="fyp.html">FYP</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- Main Content -->
+<main>
+    <!-- Overview -->
+    <section class="intro">
+        <h2>Project Overview</h2>
+        <p>
+            The DFIR project focuses on investigating compromised systems, analyzing logs and memory, and performing forensic analysis
+            to simulate real-world enterprise incident response. It emphasizes evidence preservation, threat detection,
+            and remediation planning in an ongoing SOC environment.
+        </p>
+        <ul class="highlights">
+            <li><i class="fas fa-tools"></i> Tools: Autopsy, Volatility, FTK Imager, Wireshark, Sysinternals Suite</li>
+            <li><i class="fas fa-code"></i> Techniques: Disk & memory analysis, log correlation, network traffic investigation, artifact recovery</li>
+            <li><i class="fas fa-flag"></i> Outcomes: Pending (project ongoing)</li>
+            <li><i class="fas fa-file-pdf"></i> Deliverable: Final report and analysis (project ongoing)</li>
+        </ul>
+    </section>
+
+    <!-- Scenario -->
+    <section class="scenario">
+        <h3>Realistic Enterprise Scenario</h3>
+        <p>
+            Simulates a real-world SOC incident response workflow with compromised endpoints, anomalous network traffic, 
+            and suspicious logs. Focus is on threat detection, containment, remediation, and clear documentation
+            for each stage of the investigation.
+        </p>
+    </section>
+
+    <!-- Skills -->
+    <section class="tools">
+        <h3>Techniques and Skills to be Demonstrated</h3>
+        <ul>
+            <li><i class="fas fa-memory"></i> Memory analysis and forensic imaging</li>
+            <li><i class="fas fa-hdd"></i> Disk image examination and artifact recovery</li>
+            <li><i class="fas fa-network-wired"></i> Network traffic analysis and log correlation</li>
+            <li><i class="fas fa-user-shield"></i> Identification of malware, unauthorized access, and user activity</li>
+            <li><i class="fas fa-file-lines"></i> Documentation of findings and recommended security measures</li>
+        </ul>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2025 George Abou Assaleh</p>
+</footer>
+
+<script src="../Editorial/assets/js/main.js"></script>
+<script>
+    // Scroll reveal animations — Fix 1: never remove 'show'
+    const sections = document.querySelectorAll("section");
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("show");
+            }
+        });
+    }, { threshold: 0.15 });
+    sections.forEach(section => observer.observe(section));
+</script>
+
+
+</body>
+</html>
