@@ -136,7 +136,7 @@ footer {
 
 <!-- Header -->
 <header>
-    <h1>DFIR Project (Ongoing)</h1>
+    <h1>Multi-Host DFIR CTF (Case 1)</h1>
     <nav>
         <ul>
             <li><a href="../index.html">Home</a></li>
@@ -153,37 +153,123 @@ footer {
     <section class="intro">
         <h2>Project Overview</h2>
         <p>
-            The DFIR project focuses on investigating compromised systems, analyzing logs and memory, and performing forensic analysis
-            to simulate real-world enterprise incident response. It emphasizes evidence preservation, threat detection,
-            and remediation planning in an ongoing SOC environment.
+            This DFIR project is a multi-artifact, multi-host CTF investigation for a small financial services
+            company showing clear signs of compromise across several Windows systems. Employees reported
+            suspicious browser pop-ups, unexpected URLs opening automatically, and severe system slowness.
+            The SOC then observed unusual network patterns, suspected Cobalt Strike beaconing, and
+            suspicious SMB named pipe activity across multiple workstations.
+        </p>
+        <p>
+            The business impact goes beyond user annoyance: an internal SWIFT banking code appears to have been
+            maliciously modified to reroute financial transactions, and the attacker may also be interested in
+            the company’s internal cryptocurrency concept under development by the R&amp;D team.
         </p>
         <ul class="highlights">
-            <li><i class="fas fa-tools"></i> Tools: Autopsy, Volatility, FTK Imager, Wireshark, Sysinternals Suite</li>
-            <li><i class="fas fa-code"></i> Techniques: Disk & memory analysis, log correlation, network traffic investigation, artifact recovery</li>
-            <li><i class="fas fa-flag"></i> Outcomes: Pending (project ongoing)</li>
-            <li><i class="fas fa-file-pdf"></i> Deliverable: Final report and analysis (project ongoing)</li>
+            <li>
+                <i class="fas fa-server"></i>
+                Evidence set: KAPE triage collections from 6 systems (ACC-01, ACC-02, ACC-03, ACC-04, ACC-07, ACC-10),
+                including event logs, Sysmon, file system metadata, registry hives, Prefetch, browser history and more.
+            </li>
+            <li>
+                <i class="fas fa-tools"></i>
+                Core tools: KAPE, Hayabusa + Sigma rules, Eric Zimmerman's tools (Timeline Explorer, EvtxECmd, MFTECmd),
+                Sysinternals Suite, Volatility, Wireshark, Autopsy / FTK Imager.
+            </li>
+            <li>
+                <i class="fas fa-code"></i>
+                Techniques: multi-host timeline reconstruction, Windows artefact analysis (EVTX, Prefetch, MFT, registry),
+                network traffic &amp; beaconing investigation, SMB named pipe analysis, SWIFT manipulation &amp; ransomware triage.
+            </li>
+            <li>
+                <i class="fas fa-flag"></i>
+                Objectives: trace initial compromise, lateral movement, credential dumping, persistence (e.g. JavaUpdater.exe),
+                C2 infrastructure, ransomware execution and crypto-coin activity, and answer all stakeholder questions.
+            </li>
+            <li>
+                <i class="fas fa-file-pdf"></i>
+                Deliverables: detailed DFIR report, IOCs, full attack timeline, blue-team recommendations, plus a 50–60 minute
+                live demo of the investigation workflow.
+            </li>
         </ul>
     </section>
 
     <!-- Scenario -->
     <section class="scenario">
-        <h3>Realistic Enterprise Scenario</h3>
+        <h3>Case Scenario – Small Financial Services Company</h3>
         <p>
-            Simulates a real-world SOC incident response workflow with compromised endpoints, anomalous network traffic, 
-            and suspicious logs. Focus is on threat detection, containment, remediation, and clear documentation
-            for each stage of the investigation.
+            The investigation simulates a real enterprise incident handled by an internal DFIR team. After early user
+            complaints about pop-ups and slow machines, defenders detect:
+        </p>
+        <ul>
+            <li>Unusual outbound traffic and likely Cobalt Strike beaconing from several workstations.</li>
+            <li>Suspicious SMB named pipe activity that may be associated with C2 channels and lateral movement.</li>
+            <li>Evidence that an internal SWIFT banking code was altered, potentially to redirect funds.</li>
+            <li>Artifacts suggesting the attacker probed or targeted the company’s in-house cryptocurrency concept.</li>
+        </ul>
+        <p>
+            My role in this project is to work through the collected artefacts and reconstruct the full kill chain across all six
+            systems: identify patient zero, map every lateral move (from ACC-10, ACC-01, ACC-07, ACC-04, ACC-02),
+            trace credential dumping and persistence mechanisms, and locate when and where ransomware was executed.
         </p>
     </section>
 
-    <!-- Skills -->
-    <section class="tools">
-        <h3>Techniques and Skills to be Demonstrated</h3>
+    <!-- Scope & Stakeholder Questions -->
+    <section>
+        <h3>Scope, Evidence & Stakeholder Questions</h3>
+        <p>
+            The scope of this case covers six Windows endpoints (ACC-01, ACC-02, ACC-03, ACC-04, ACC-07, ACC-10)
+            using KAPE triage outputs as the primary evidence source. From these artefacts I will:
+        </p>
         <ul>
-            <li><i class="fas fa-memory"></i> Memory analysis and forensic imaging</li>
-            <li><i class="fas fa-hdd"></i> Disk image examination and artifact recovery</li>
-            <li><i class="fas fa-network-wired"></i> Network traffic analysis and log correlation</li>
-            <li><i class="fas fa-user-shield"></i> Identification of malware, unauthorized access, and user activity</li>
-            <li><i class="fas fa-file-lines"></i> Documentation of findings and recommended security measures</li>
+            <li>Determine which host shows the first signs of compromise and how the attacker gained initial access.</li>
+            <li>Track lateral movement paths between the ACC-0X systems via RDP, SMB, and service creation.</li>
+            <li>Identify Cobalt Strike beacon IPs, ports, hostnames, and named pipes used for command-and-control.</li>
+            <li>Locate credential dumping activity, named pipes used concurrently, and resulting persistence mechanisms.</li>
+            <li>Analyze JavaUpdater.exe (timestomping, service creation, execution count across systems).</li>
+            <li>Reconstruct the PowerShell ransomware run (host, encryption function, cmdlets, ransom note, BTC address).</li>
+            <li>Confirm which SWIFT banking code was modified and how the attacker interacted with the crypto-coin project.</li>
+            <li>Summarize all IOCs (IPs, domains, hashes, file paths, pipe names) and map them to MITRE ATT&amp;CK.</li>
+        </ul>
+        <p>
+            The final report follows a full DFIR structure: executive summary, scope &amp; methodology, findings by artefact
+            category, IOCs, attack timeline, conclusions, architectural and control recommendations, and contributions.
+        </p>
+    </section>
+
+    <!-- Techniques / Skills -->
+    <section class="tools">
+        <h3>Key Techniques, Artefacts & Tools</h3>
+        <ul>
+            <li>
+                <i class="fas fa-microchip"></i>
+                <strong>Host triage &amp; Windows artefacts:</strong>
+                working from KAPE collections to examine event logs, Sysmon, MFT, Prefetch, registry hives,
+                browser history and other NTFS artefacts across all six systems.
+            </li>
+            <li>
+                <i class="fas fa-network-wired"></i>
+                <strong>Hayabusa + Sigma &amp; Timeline Explorer:</strong>
+                generating a unified CSV timeline of Windows events, leveraging Sigma-based detections (including
+                critical Cobalt Strike named pipe rules), then pivoting and visualizing activity in Timeline Explorer.
+            </li>
+            <li>
+                <i class="fas fa-bug"></i>
+                <strong>Malware, persistence &amp; credential access:</strong>
+                tracing suspicious binaries such as JavaUpdater.exe (creation time manipulation, service creation,
+                execution count), credential dumping events, and use of named pipes for C2 and lateral movement.
+            </li>
+            <li>
+                <i class="fas fa-lock"></i>
+                <strong>Ransomware &amp; SWIFT manipulation:</strong>
+                identifying the system where the PowerShell ransomware ran, the encryption function and cmdlets used,
+                ransom note artefacts, as well as the tampering with SWIFT codes and any crypto-coin references.
+            </li>
+            <li>
+                <i class="fas fa-shield-alt"></i>
+                <strong>Blue-team recommendations &amp; threat intel:</strong>
+                mapping gaps to CIS/SANS controls, proposing concrete tools and architecture changes for detection and
+                prevention, and correlating attacker IPs and infrastructure with public threat intelligence where possible.
+            </li>
         </ul>
     </section>
 </main>
@@ -195,7 +281,7 @@ footer {
 
 <script src="../Editorial/assets/js/main.js"></script>
 <script>
-    // Scroll reveal animations — Fix 1: never remove 'show'
+    // Scroll reveal animations — never remove 'show' once added
     const sections = document.querySelectorAll("section");
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -206,7 +292,6 @@ footer {
     }, { threshold: 0.15 });
     sections.forEach(section => observer.observe(section));
 </script>
-
 
 </body>
 </html>
